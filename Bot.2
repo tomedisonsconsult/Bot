@@ -9,11 +9,11 @@ def main_menu():
     keyboard = [
         [InlineKeyboardButton("Наша Команда", callback_data='text1'),
          InlineKeyboardButton("Order", callback_data='text4')],
-        [InlineKeyboardButton("Price Forex", callback_data='text3')
+        [InlineKeyboardButton("Price Forex", callback_data='text3'),
          InlineKeyboardButton("GEO Fx", callback_data='menu_forex')],
-        [InlineKeyboardButton("Price Charge", callback_data='text5')
+        [InlineKeyboardButton("Price Charge", callback_data='text5'),
          InlineKeyboardButton("GEO ChB", callback_data='menu_Charge')],
-        [InlineKeyboardButton("Invalids", callback_data='menu_Invalid']
+        [InlineKeyboardButton("Invalids", callback_data='menu_Invalid')]
         
     ]
     return InlineKeyboardMarkup(keyboard)
@@ -55,102 +55,7 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
     elif query.data == 'text3':
         await query.edit_message_text(
             """
-GEO:ES-ES  
-CR:16%
-Funnels: ai-app, bitfinex-invest*
-Source: Outbrain
-Price:1800+14%
-
-GEO:JP-JP 
-CR 12% 
-Funnels: Quantum-elite, Finance-app
-Source:Native
-Price:1450$+11% 
-
-GEO:CA EN
-CR 12%
-Funnel: bitcoin-ai, quantum, trader-ai, gpt
-Source:Native
-Price:1500+11%
-
-GEO:IT-IT
-CR:15%+
-Funnels: ai-app, valioro-ai
-Source: Outbrain
-Price:1800+14%
-
-GEO:TR-EU
-СR: 10%
-Funnels: Baykar ,WhatsApp, revolut, Turkiairinvest,Turkishairlines,Socar
-Source: FB
-Price: 1100+10%
-Pull geo: CH,AT,BE,CZ,DK,FI,FR,DE,GR,IS,IE,IT,LI,LU, MT,NL,NO,PL,PT,RO,ES,SE,CH,TR,GB
-
-GEO:RO-RO 
-CR: 8% 
-Funnels: Hidroelectrica, SCI, Neptun deep, CGI, OMV PETROM
-Source: FB
-Price: 75$ 
-
-GEO:Ru-EU 
-CR:5%
-Funnels GPT Trade Global, Quantum System, Algorithm, WhatsApp Invest, Revolut, Поддержка наших(<5%)
-Source:FB+Native 
-Price: 95$
-
-GEO:PL-EU 
-CR:8-9%
-Funnels:ChatGPT trade 
-SourceFb+Native
-Price: 1400+9% 
-
-GEO:PL-PL
-CR:10%
-Funnels:ChatGPT trade 
-SourceFb+Native
-Price: 1400+11% 
-
-GEO:IT-IT
-Cr: 7%
-Funnels: Revolut
-Source :FB
-Price: 90$
-
-GEO:UK(EN) 
-CR:10-11% 
-Funnels:PrimecrestVoryx, QuantumAI, WealthProgram, InteractiveTrader
-Price:1300+10%
-Source: FB+SEO+in-app
-
-GEI:DE-DE 
-CR:13% 
-Funnels:KI Platform, Quantum
-Source: FB+SEO+in-app
-Price:1700+13%
-
-GEO:CZ_CZ 
-CR:11-12%  
-Funnels:TempoInvion
-Source: FB+SEO
-Priece:1300+10%
-
-GEO:IT-IT 
-CR:12%  
-Funnels:Senvix, TrevaloxanoPro
-Source: FB/SEO/IN-APP
-Price: 1300+10%
-
-GEO:ES-ES 
-CR:12% 
-Funnels:ElMundo
-Source: FB/SEO/IN-APP
-Price: 1500+12%
-
-Geo: UZ-ru
-CR: 3.5-4%
-Funnel: USM, Hamkorbank
-Source: FB
-Price: 20$""",
+""",
             reply_markup=main_menu()
         )
 
@@ -158,19 +63,7 @@ Price: 20$""",
         await query.edit_message_text(
             """Кош на Январь
 
-GEO:
-Funnel:
 
-Work Hours:
-Lead per day:
-
-Lead Price:
-Total Leads:
-
-Total Sum: 
-
-Wallet USDT TRC20:
-TMy1WXpPiXgLnoZD8GcFWm6p9Vpb4pG3mn
 """,
             reply_markup=main_menu()
         )
@@ -188,11 +81,22 @@ TMy1WXpPiXgLnoZD8GcFWm6p9Vpb4pG3mn
     # ---- FOREX (С ПОДМЕНЮ) ----
     elif query.data == 'menu_forex':
         await query.edit_message_text(
-            "📊 Price Forex\nВыберите регион:",
+            "📊 Price Forex\nВыберите offer:",
             reply_markup=forex_menu()
         )
 
     elif query.data == 'fx_asia':
+        await query.edit_message_text(
+            "🌏 Asia\nPrice: 40$\nCR: 11%",
+            reply_markup=forex_menu()
+        )
+            elif query.data == 'fx_asia':
+        await query.edit_message_text(
+            "🌏 Asia\nPrice: 40$\nCR: 11%",
+            reply_markup=forex_menu()
+        )  
+        
+        elif query.data == 'fx_asia':
         await query.edit_message_text(
             "🌏 Asia\nPrice: 40$\nCR: 11%",
             reply_markup=forex_menu()
