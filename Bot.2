@@ -1,8 +1,40 @@
 import os
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, InputMediaPhoto
 from telegram.ext import Application, CommandHandler, CallbackQueryHandler, ContextTypes
-
 TOKEN = "8060637949:AAHQfS_vx3MIrjyCQoUt65H4ojEeaXAB5HQ"
+
+# ---------------- папки ----------------
+submenus = {
+    "Jp_1": r"C:\Users\Administrator\Desktop\Mybot\LandsFx\JP-JP",   
+    "Es_2": r"C:\Users\Administrator\Desktop\Mybot\LandsFx\ES-ES",
+    "Pl_3": r"C:\Users\Administrator\Desktop\Mybot\LandsFx\PL-PL",
+    "It_4": r"C:\Users\Administrator\Desktop\Mybot\LandsFx\IT-IT",
+    "Ca_5": r"C:\Users\Administrator\Desktop\Mybot\LandsFx\CA-EN"
+    "Uk_6": r"C:\Users\Administrator\Desktop\Mybot\LandsFx\UK-EN",   
+    "Tru_7": r"C:\Users\Administrator\Desktop\Mybot\LandsFx\TR-EU",
+    "Ro_8": r"C:\Users\Administrator\Desktop\Mybot\LandsFx\RO-RO",
+    "RuE_9": r"C:\Users\Administrator\Desktop\Mybot\LandsFx\RU-EU",
+    "PlE_10": r"C:\Users\Administrator\Desktop\Mybot\LandsFx\PL-EU",
+    "De_11": r"C:\Users\Administrator\Desktop\Mybot\LandsFx\DE-DE",
+    "Cz_12": r"C:\Users\Administrator\Desktop\Mybot\LandsFx\CZ-CZ",
+    "UzR_13": r"C:\Users\Administrator\Desktop\Mybot\LandsFx\UZ-RU"
+}
+#----------------словарь офферов-------------№
+    button_texts = {
+    "Jp_1": "GEO: JP-JP\nCR 12%\nFunnels: Quantum-elite. Finance-app.\nSource: Native\nPrice: 1450$+11%",
+    "Es_2": "GEO: ES-ES\nCR 11%\nFunnels: SuperFunnels\nSource: Native\nPrice: 1350$",
+    "Pl_3": "GEO: PL-PL\nCR 10%\nFunnels: FastFunnels\nSource: Native\nPrice: 1250$",
+    "It_4": "GEO: IT-IT\nCR 9%\nFunnels: ITFunnels\nSource: Native\nPrice: 1100$",
+    "Ca_5": "GEO: CA-EN\nCR 8%\nFunnels: CanadaFunnels\nSource: Native\nPrice: 1400$",
+    "Uk_6": "GEO: UK-EN\nCR 12%\nFunnels: UKFunnels\nSource: Native\nPrice: 1450$",
+    "Tru_7": "GEO: TR-EU\nCR 10%\nFunnels: TRFunnels\nSource: Native\nPrice: 1200$",
+    "Ro_8": "GEO: RO-RO\nCR 9%\nFunnels: ROFunnels\nSource: Native\nPrice: 1100$",
+    "RuE_9": "GEO: RU-EU\nCR 13%\nFunnels: RUEFunnels\nSource: Native\nPrice: 1500$",
+    "PlE_10": "GEO: PL-EU\nCR 10%\nFunnels: PLEFunnels\nSource: Native\nPrice: 1250$",
+    "De_11": "GEO: DE-DE\nCR 11%\nFunnels: DEFunnels\nSource: Native\nPrice: 1300$",
+    "Cz_12": "GEO: CZ-CZ\nCR 9%\nFunnels: CZFunnels\nSource: Native\nPrice: 1100$",
+    "UzR_13": "GEO: UZ-RU\nCR 12%\nFunnels: UZFunnels\nSource: Native\nPrice: 1450$"
+}
 
 # ---------------- Главное меню ----------------
 def main_menu():
@@ -52,38 +84,8 @@ def invalid_menu():
     ]
     return InlineKeyboardMarkup(keyboard)
 
-# ---------------- Словарь кнопка → папка ----------------
-submenus = {
-    "Jp_1": r"C:\Users\Administrator\Desktop\Mybot\LandsFx\JP-JP",   
-    "Es_2": r"C:\Users\Administrator\Desktop\Mybot\LandsFx\ES-ES",
-    "Pl_3": r"C:\Users\Administrator\Desktop\Mybot\LandsFx\PL-PL",
-    "It_4": r"C:\Users\Administrator\Desktop\Mybot\LandsFx\IT-IT",
-    "Ca_5": r"C:\Users\Administrator\Desktop\Mybot\LandsFx\CA-EN"
-    "Uk_6": r"C:\Users\Administrator\Desktop\Mybot\LandsFx\UK-EN",   
-    "Tru_7": r"C:\Users\Administrator\Desktop\Mybot\LandsFx\TR-EU",
-    "Ro_8": r"C:\Users\Administrator\Desktop\Mybot\LandsFx\RO-RO",
-    "RuE_9": r"C:\Users\Administrator\Desktop\Mybot\LandsFx\RU-EU",
-    "PlE_10": r"C:\Users\Administrator\Desktop\Mybot\LandsFx\PL-EU",
-    "De_11": r"C:\Users\Administrator\Desktop\Mybot\LandsFx\DE-DE",
-    "Cz_12": r"C:\Users\Administrator\Desktop\Mybot\LandsFx\CZ-CZ",
-    "UzR_13": r"C:\Users\Administrator\Desktop\Mybot\LandsFx\UZ-RU"
 
-    #----------------словарь офферов-------------№
-    button_texts = {
-    "Jp_1": "GEO: JP-JP\nCR 12%\nFunnels: Quantum-elite. Finance-app.\nSource: Native\nPrice: 1450$+11%",
-    "Es_2": "GEO: ES-ES\nCR 11%\nFunnels: SuperFunnels\nSource: Native\nPrice: 1350$",
-    "Pl_3": "GEO: PL-PL\nCR 10%\nFunnels: FastFunnels\nSource: Native\nPrice: 1250$",
-    "It_4": "GEO: IT-IT\nCR 9%\nFunnels: ITFunnels\nSource: Native\nPrice: 1100$",
-    "Ca_5": "GEO: CA-EN\nCR 8%\nFunnels: CanadaFunnels\nSource: Native\nPrice: 1400$",
-    "Uk_6": "GEO: UK-EN\nCR 12%\nFunnels: UKFunnels\nSource: Native\nPrice: 1450$",
-    "Tru_7": "GEO: TR-EU\nCR 10%\nFunnels: TRFunnels\nSource: Native\nPrice: 1200$",
-    "Ro_8": "GEO: RO-RO\nCR 9%\nFunnels: ROFunnels\nSource: Native\nPrice: 1100$",
-    "RuE_9": "GEO: RU-EU\nCR 13%\nFunnels: RUEFunnels\nSource: Native\nPrice: 1500$",
-    "PlE_10": "GEO: PL-EU\nCR 10%\nFunnels: PLEFunnels\nSource: Native\nPrice: 1250$",
-    "De_11": "GEO: DE-DE\nCR 11%\nFunnels: DEFunnels\nSource: Native\nPrice: 1300$",
-    "Cz_12": "GEO: CZ-CZ\nCR 9%\nFunnels: CZFunnels\nSource: Native\nPrice: 1100$",
-    "UzR_13": "GEO: UZ-RU\nCR 12%\nFunnels: UZFunnels\nSource: Native\nPrice: 1450$"
-}
+    
 
 # ---------------- /start ----------------
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
