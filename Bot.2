@@ -54,7 +54,7 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     elif query.data == 'text3':
         await query.edit_message_text(
-            "
+            """
 GEO:ES-ES  
 CR:16%
 Funnels: ai-app, bitfinex-invest*
@@ -150,13 +150,13 @@ Geo: UZ-ru
 CR: 3.5-4%
 Funnel: USM, Hamkorbank
 Source: FB
-Price: 20$",
+Price: 20$""",
             reply_markup=main_menu()
         )
 
     elif query.data == 'text4':
         await query.edit_message_text(
-            "Кош на Январь
+            """Кош на Январь
 
 GEO:
 Funnel:
@@ -171,7 +171,7 @@ Total Sum:
 
 Wallet USDT TRC20:
 TMy1WXpPiXgLnoZD8GcFWm6p9Vpb4pG3mn
-",
+""",
             reply_markup=main_menu()
         )
 
