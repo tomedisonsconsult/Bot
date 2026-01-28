@@ -19,7 +19,7 @@ submenus = {
     "Cz_12": r"C:\Users\Administrator\Desktop\Mybot\LandsFx\CZ-CZ",
     "UzR_13": r"C:\Users\Administrator\Desktop\Mybot\LandsFx\UZ-RU"
 }
-#----------------словарь офферов-------------№
+#----------------Текст оферов когда нажимаешь на кнопку офферов форекс-------------№
     button_texts = {
     "Jp_1": "GEO: JP-JP\nCR 12%\nFunnels: Quantum-elite. Finance-app.\nSource: Native\nPrice: 1450$+11%",
     "Es_2": "GEO: ES-ES\nCR 11%\nFunnels: SuperFunnels\nSource: Native\nPrice: 1350$",
@@ -50,7 +50,7 @@ def main_menu():
     return InlineKeyboardMarkup(keyboard)
 
 # ---------------- Подменю ----------------
-def forex_menu():
+def forex_menu(): #-кнопки меню форекс
     keyboard = [
         [InlineKeyboardButton("JP-JP", callback_data='Jp_1')],
         [InlineKeyboardButton("ES-ES", callback_data='Es_2')],
@@ -69,7 +69,7 @@ def forex_menu():
     ]
     return InlineKeyboardMarkup(keyboard)
 
-def charge_menu():
+def charge_menu():  #--кнопки меню чаржа---
     keyboard = [
         [InlineKeyboardButton("Кнопка 1", callback_data='ch_1')],
         [InlineKeyboardButton("Кнопка 2", callback_data='ch_2')],
@@ -77,9 +77,10 @@ def charge_menu():
     ]
     return InlineKeyboardMarkup(keyboard)
 
-def invalid_menu():
+def invalid_menu():  #---кнопки меню сверок 
     keyboard = [
-        [InlineKeyboardButton("Кнопка 1", callback_data='inv_1')],
+        [InlineKeyboardButton("Invalids Aff", callback_data='inv_1')],
+        [InlineKeyboardButton("Invalids Brands", callback_data='inv_1')],
         [InlineKeyboardButton("⬅️ Назад", callback_data='back_main')]
     ]
     return InlineKeyboardMarkup(keyboard)
@@ -97,7 +98,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 # ---------------- Функция отправки фото ----------------
 async def send_photos_from_folder(message, folder_path):
     if not os.path.exists(folder_path):
-        await message.reply_text(f"❌ Папка с фото не найдена: {folder_path}")
+        await message.reply_text(f"🚚 Папка с фото не найдена: {folder_path}")
         return
 
     media = []
@@ -107,7 +108,7 @@ async def send_photos_from_folder(message, folder_path):
             media.append(InputMediaPhoto(open(os.path.join(folder_path, file), "rb")))
 
     if not media:
-        await message.reply_text("❌ Файлов с изображениями в папке нет")
+        await message.reply_text("🚚 Файлов с изображениями в папке нет")
         return
 
     # Отправка альбомами по 10 фото
@@ -118,7 +119,7 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     await query.answer()
 
-    # ----- Главное меню без подменю -----
+    # ----- Главное меню (тут менять только  текст) -----
     if query.data == 'text1':
         await query.edit_message_text(
             """Всем привет 🤗
@@ -141,7 +142,7 @@ Lead Per day -
   @Consultingleads_Support - Тех. поддержка""",
             reply_markup=main_menu()
         )
-    elif query.data == 'text2':
+    elif query.data == 'text2': #----кнопка Order----
         await query.edit_message_text(
             """Кош  Январь
 
@@ -161,7 +162,7 @@ TMy1WXpPiXgLnoZD8GcFWm6p9Vpb4pG3mn
 """,
             reply_markup=main_menu()
         )
-    elif query.data == 'text3':
+    elif query.data == 'text3': #-----Price Forex----
         await query.edit_message_text(
             """
 GEO:ES-ES  
@@ -262,7 +263,7 @@ Source: FB
 Price: 20$""",
             reply_markup=main_menu()
         )
-    elif query.data == 'text5':
+    elif query.data == 'text5': #--- сверка с  брендом----
         await query.edit_message_text(
             "Привет ✌️\n\nДавайте сверимся по невалиду за прошлую неделю!\n\nПродуктивной и депозитной недели 💪🔥",
             reply_markup=main_menu()
