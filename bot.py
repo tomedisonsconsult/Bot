@@ -18,8 +18,9 @@ submenus = {
     "De_11": r"C:\Users\Administrator\Desktop\Mybot\LandsFx\DE-DE",
     "Cz_12": r"C:\Users\Administrator\Desktop\Mybot\LandsFx\CZ-CZ",
     "UzR_13": r"C:\Users\Administrator\Desktop\Mybot\LandsFx\UZ-RU"
+#-----Папки для чаржа----
 }
-#----------------Текст оферов когда нажимаешь на кнопку офферов форекс-------------№
+#----------------Текст оферов когда нажимаешь на кнопку офферов форекс-------------
     button_texts = {
     "Jp_1": "GEO: JP-JP\nCR 12%\nFunnels: Quantum-elite. Finance-app.\nSource: Native\nPrice: 1450$+11%",
     "Es_2": "GEO: ES-ES\nCR 11%\nFunnels: SuperFunnels\nSource: Native\nPrice: 1350$",
@@ -34,6 +35,7 @@ submenus = {
     "De_11": "GEO: DE-DE\nCR 11%\nFunnels: DEFunnels\nSource: Native\nPrice: 1300$",
     "Cz_12": "GEO: CZ-CZ\nCR 9%\nFunnels: CZFunnels\nSource: Native\nPrice: 1100$",
     "UzR_13": "GEO: UZ-RU\nCR 12%\nFunnels: UZFunnels\nSource: Native\nPrice: 1450$"
+#----------------Текст оферов когда нажимаешь на кнопку офферов Чарж-------------
 }
 
 # ---------------- Главное меню ----------------
@@ -98,7 +100,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 # ---------------- Функция отправки фото ----------------
 async def send_photos_from_folder(message, folder_path):
     if not os.path.exists(folder_path):
-        await message.reply_text(f"🚚 Папка с фото не найдена: {folder_path}")
+        await message.reply_text(f"🚚 Товар в дорозі: {folder_path}")
         return
 
     media = []
@@ -108,7 +110,7 @@ async def send_photos_from_folder(message, folder_path):
             media.append(InputMediaPhoto(open(os.path.join(folder_path, file), "rb")))
 
     if not media:
-        await message.reply_text("🚚 Файлов с изображениями в папке нет")
+        await message.reply_text("🚚 Товар в дорозі")
         return
 
     # Отправка альбомами по 10 фото
@@ -265,7 +267,11 @@ Price: 20$""",
         )
     elif query.data == 'text5': #--- сверка с  брендом----
         await query.edit_message_text(
-            "Привет ✌️\n\nДавайте сверимся по невалиду за прошлую неделю!\n\nПродуктивной и депозитной недели 💪🔥",
+            "Доброе утро 🤗\nДавайте сверимся по невалиду за прошлую неделю!\nПредоставьте следующую информацию:
+1. GEO
+2. Количество - сколько получили  
+3. Invalids  
+Почта - Статус - Комментарий\n\nПродуктивной и депозитной недели 💪🔥",
             reply_markup=main_menu()
         )
 
