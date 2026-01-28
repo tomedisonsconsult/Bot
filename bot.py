@@ -19,6 +19,7 @@ submenus = {
     "Cz_12": r"C:\Users\Administrator\Desktop\Mybot\LandsFx\CZ-CZ",
     "UzR_13": r"C:\Users\Administrator\Desktop\Mybot\LandsFx\UZ-RU"
 #-----Папки для чаржа----
+    
 }
 #----------------Текст оферов когда нажимаешь на кнопку офферов форекс-------------
     button_texts = {
@@ -36,6 +37,7 @@ submenus = {
     "Cz_12": "GEO: CZ-CZ\nCR 9%\nFunnels: CZFunnels\nSource: Native\nPrice: 1100$",
     "UzR_13": "GEO: UZ-RU\nCR 12%\nFunnels: UZFunnels\nSource: Native\nPrice: 1450$"
 #----------------Текст оферов когда нажимаешь на кнопку офферов Чарж-------------
+    "ChEU-RU_1": "GEO: Charge EU-RU\nCR 6%\nFunnels: Юрка\nSource: GG,FB\nPrice: 100$"
 }
 
 # ---------------- Главное меню ----------------
@@ -73,8 +75,8 @@ def forex_menu(): #-кнопки меню форекс
 
 def charge_menu():  #--кнопки меню чаржа---
     keyboard = [
-        [InlineKeyboardButton("Кнопка 1", callback_data='ch_1')],
-        [InlineKeyboardButton("Кнопка 2", callback_data='ch_2')],
+        [InlineKeyboardButton("Charge EU-RU", callback_data='ChEU-RU_1')],
+        [InlineKeyboardButton("Charge EU-EN", callback_data='ch_2')],
         [InlineKeyboardButton("⬅️ Назад", callback_data='back_main')]
     ]
     return InlineKeyboardMarkup(keyboard)
