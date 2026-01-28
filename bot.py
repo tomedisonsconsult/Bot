@@ -323,46 +323,48 @@ Price: 20$""",
     
 
     # ----- Меню с подменю -----
-    elif query.data == 'menu_forex':
+async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    query = update.callback_query
+    await query.answer()
+
+    # ----- Главное меню с подменю -----
+    if query.data == 'menu_forex':
         await query.edit_message_text(
             "📊 Price Forex\nВыберите предложение:",
             reply_markup=forex_menu()
         )
+        return
+
     elif query.data == 'menu_charge':
         await query.edit_message_text(
             "💳 Price Charge\nВыберите предложение:",
             reply_markup=charge_menu()
         )
+        return
+
     elif query.data == 'menu_invalid':
         await query.edit_message_text(
             "❌ Invalids\nВыберите предложение:",
             reply_markup=invalid_menu()
         )
+        return
 
- async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    query = update.callback_query
-    await query.answer()
-
-    # ----- Кнопки только с текстом -----
-    if query.data in button_texts:
+    # ----- Кнопки только с текстом (inv_1..inv_4) -----
+    elif query.data in button_texts:
         text_to_send = button_texts[query.data]
         await query.edit_message_text(
             text=text_to_send,
-            reply_markup=invalid_menu()  
+            reply_markup=invalid_menu()
         )
-        return  
+        return  # НЕ отправляем фото
 
-    # ----- Подменю: текст + фото -----
+    # ----- Кнопки с фото (только если путь прописан в submenus) -----
     elif query.data in submenus:
         text_to_send = button_texts.get(query.data, "Товар в дорозі")
-
-        # Отправляем текст
         await query.edit_message_text(
             text=text_to_send,
-            reply_markup=main_menu()  # или подменю, если нужно
+            reply_markup=invalid_menu()
         )
-
-        # Отправляем фото из папки
         await send_photos_from_folder(query.message, submenus[query.data])
         return
 
@@ -372,3 +374,14 @@ Price: 20$""",
             "Главное меню",
             reply_markup=main_menu()
         )
+
+    # ---------------- Запуск ----------------
+def main():
+    app = Application.builder().token(TOKEN).build()
+    app.add_handler(CommandHandler("start", start))
+    app.add_handler(CallbackQueryHandler(button))
+    app.run_polling()
+
+if __name__ == "__main__":
+    main()
+
