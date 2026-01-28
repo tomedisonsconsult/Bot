@@ -19,7 +19,7 @@ submenus = {
     "Cz_12": r"C:\Users\Administrator\Desktop\Mybot\LandsFx\CZ-CZ",
     "UzR_13": r"C:\Users\Administrator\Desktop\Mybot\LandsFx\UZ-RU",
 #-----Папки для чаржа----
-    "ChEU-RU_1": r"C:\Users\Administrator\Desktop\Mybot\LandsFx\cgcg"
+    "ChEU-RU_1": r"C:\Users\Administrator\Desktop\Mybot\LandsFx\ChargeEU-RU"
 }
 #----------------Текст оферов когда нажимаешь на кнопку офферов форекс-------------
 button_texts = {
@@ -37,7 +37,58 @@ button_texts = {
     "Cz_12": "GEO: CZ-CZ\nCR 9%\nFunnels: CZFunnels\nSource: Native\nPrice: 1100$",
     "UzR_13": "GEO: UZ-RU\nCR 12%\nFunnels: UZFunnels\nSource: Native\nPrice: 1450$",
 #----------------Текст оферов когда нажимаешь на кнопку офферов Чарж-------------
-    "ChEU-RU_1": "GEO: Charge EU-RU\nCR 6%\nFunnels: Юрка\nSource: GG,FB\nPrice: 100$"
+    "ChEU-RU_1": "GEO: Charge EU-RU\nCR 6%\nFunnels: Юрка\nSource: GG,FB\nPrice: 100$",
+#---Текст  кнопок Invalids------
+   "inv_1": """Invalids: 
+Wrong Number 
+Wrong country
+Wrong Person
+Wrong Info
+No Language
+Under Age
+Didn’t register
+
+
+ -Сверка каждый понедельник или день в день для закрытия дневного пролива.
+ -Замена невалидов осуществляется на следующий день после подачи 
+
+При невалиде выше 20% необходимо предоставить записи разговоров""",
+    "inv_2": """Invalids: 
+Wrong info  
+Wrong number  
+Duplicate 
+Invalid language
+Fraud (пранкер  - троль)
+Autologin 70/30
+autoingekct ( бот ip/proxy)  
+Didn’t register
+Fake registartion (лид  говорит что  регистрировался  вчера и  более  дней  назад)
+Wrong country
+Under age: 21
+Over age: 75
+Test
+
+
+ -Сверка и оплата понедельник - среда 
+ При невалиде выше 20% предоставляем записи разговоров.
+ Все остальные по запросу
+ Мы рады работать с вами)""",
+    "inv_3": """Доброе утро 🤗
+Давайте сверимся  по невалиду  за прошлую неделю!
+
+Предоставьте следующую информацию:
+1. GEO
+2. Количество - сколько получили  
+3. Invalids  
+Почта - Статус - Комментарий
+Компания Consulting Leads жедает Вам Прибыльной недели)""",
+    "inv_2": """Всем приветДавайте сверимся за прошлую неделю:
+GEO:
+Total Leads:
+Invalid:
+Valid:
+Total sum: """
+    
 }
 
 # ---------------- Главное меню ----------------
@@ -83,8 +134,10 @@ def charge_menu():  #--кнопки меню чаржа---
 
 def invalid_menu():  #---кнопки меню сверок 
     keyboard = [
-        [InlineKeyboardButton("Invalids Aff", callback_data='inv_1')],
         [InlineKeyboardButton("Invalids Brands", callback_data='inv_1')],
+        [InlineKeyboardButton("Invalids Aff", callback_data='inv_2')],
+        [InlineKeyboardButton("Cверка Brands", callback_data='inv_3')],
+        [InlineKeyboardButton("Cверка Aff", callback_data='inv_4')],
         [InlineKeyboardButton("⬅️ Назад", callback_data='back_main')]
     ]
     return InlineKeyboardMarkup(keyboard)
@@ -267,11 +320,7 @@ Source: FB
 Price: 20$""",
             reply_markup=main_menu()
         )
-    elif query.data == 'text5': #--- сверка с  брендом----
-        await query.edit_message_text(
-            "Доброе утро 🤗\nДавайте сверимся по невалиду за прошлую неделю!\nПредоставьте следующую информацию:\n1.GEO \n2. Количество - сколько получили\n3. Invalids\nПочта - Статус - Комментарий\n\nПродуктивной и депозитной недели 💪🔥",
-            reply_markup=main_menu()
-        )
+    
 
     # ----- Меню с подменю -----
     elif query.data == 'menu_forex':
