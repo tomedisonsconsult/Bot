@@ -339,26 +339,36 @@ Price: 20$""",
             reply_markup=invalid_menu()
         )
 
+ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    query = update.callback_query
+    await query.answer()
+
+    # ----- Кнопки только с текстом -----
+    if query.data in button_texts:
+        text_to_send = button_texts[query.data]
+        await query.edit_message_text(
+            text=text_to_send,
+            reply_markup=invalid_menu()  
+        )
+        return  
+
     # ----- Подменю: текст + фото -----
     elif query.data in submenus:
         text_to_send = button_texts.get(query.data, "Товар в дорозі")
 
-    # Отправляем текст
-    await query.edit_message_text(
-        text_to_send,
-        reply_markup=main_menu()  # или подменю, если нужно
-    )
+        # Отправляем текст
+        await query.edit_message_text(
+            text=text_to_send,
+            reply_markup=main_menu()  # или подменю, если нужно
+        )
 
-    # Отправляем фото из папки
-    await send_photos_from_folder(query.message, submenus[query.data])
+        # Отправляем фото из папки
+        await send_photos_from_folder(query.message, submenus[query.data])
+        return
 
-
-# ---------------- Запуск ----------------
-def main():
-    app = Application.builder().token(TOKEN).build()
-    app.add_handler(CommandHandler("start", start))
-    app.add_handler(CallbackQueryHandler(button))
-    app.run_polling()
-
-if __name__ == "__main__":
-    main()
+    # ----- Кнопка "назад" -----
+    elif query.data == "back_main":
+        await query.edit_message_text(
+            "Главное меню",
+            reply_markup=main_menu()
+        )
