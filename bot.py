@@ -17,12 +17,12 @@ submenus = {
     "PlE_10": r"C:\Users\Administrator\Desktop\Mybot\LandsFx\PL-EU",
     "De_11": r"C:\Users\Administrator\Desktop\Mybot\LandsFx\DE-DE",
     "Cz_12": r"C:\Users\Administrator\Desktop\Mybot\LandsFx\CZ-CZ",
-    "UzR_13": r"C:\Users\Administrator\Desktop\Mybot\LandsFx\UZ-RU"
+    "UzR_13": r"C:\Users\Administrator\Desktop\Mybot\LandsFx\UZ-RU",
 #-----Папки для чаржа----
-    
+    "ChEU-RU_1": r"C:\Users\Administrator\Desktop\Mybot\LandsFx\cgcg"
 }
 #----------------Текст оферов когда нажимаешь на кнопку офферов форекс-------------
-    button_texts = {
+button_texts = {
     "Jp_1": "GEO: JP-JP\nCR 12%\nFunnels: Quantum-elite. Finance-app.\nSource: Native\nPrice: 1450$+11%",
     "Es_2": "GEO: ES-ES\nCR 11%\nFunnels: SuperFunnels\nSource: Native\nPrice: 1350$",
     "Pl_3": "GEO: PL-PL\nCR 10%\nFunnels: FastFunnels\nSource: Native\nPrice: 1250$",
@@ -35,7 +35,7 @@ submenus = {
     "PlE_10": "GEO: PL-EU\nCR 10%\nFunnels: PLEFunnels\nSource: Native\nPrice: 1250$",
     "De_11": "GEO: DE-DE\nCR 11%\nFunnels: DEFunnels\nSource: Native\nPrice: 1300$",
     "Cz_12": "GEO: CZ-CZ\nCR 9%\nFunnels: CZFunnels\nSource: Native\nPrice: 1100$",
-    "UzR_13": "GEO: UZ-RU\nCR 12%\nFunnels: UZFunnels\nSource: Native\nPrice: 1450$"
+    "UzR_13": "GEO: UZ-RU\nCR 12%\nFunnels: UZFunnels\nSource: Native\nPrice: 1450$",
 #----------------Текст оферов когда нажимаешь на кнопку офферов Чарж-------------
     "ChEU-RU_1": "GEO: Charge EU-RU\nCR 6%\nFunnels: Юрка\nSource: GG,FB\nPrice: 100$"
 }
@@ -269,11 +269,7 @@ Price: 20$""",
         )
     elif query.data == 'text5': #--- сверка с  брендом----
         await query.edit_message_text(
-            "Доброе утро 🤗\nДавайте сверимся по невалиду за прошлую неделю!\nПредоставьте следующую информацию:
-1. GEO
-2. Количество - сколько получили  
-3. Invalids  
-Почта - Статус - Комментарий\n\nПродуктивной и депозитной недели 💪🔥",
+            "Доброе утро 🤗\nДавайте сверимся по невалиду за прошлую неделю!\nПредоставьте следующую информацию:\n1.GEO \n2. Количество - сколько получили\n3. Invalids\nПочта - Статус - Комментарий\n\nПродуктивной и депозитной недели 💪🔥",
             reply_markup=main_menu()
         )
 
@@ -296,8 +292,7 @@ Price: 20$""",
 
     # ----- Подменю: текст + фото -----
     elif query.data in submenus:
-    # Получаем текст из словаря
-    text_to_send = button_texts.get(query.data, "Описание отсутствует")
+        text_to_send = button_texts.get(query.data, "Товар в дорозі")
 
     # Отправляем текст
     await query.edit_message_text(
